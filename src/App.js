@@ -1,8 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 
-export default function App() {
-    
-    /**
+  /**
      * Challenge: Connect the form to local state
      * 
      * 1. Create a state object to store the 4 values we need to save.
@@ -18,6 +16,26 @@ export default function App() {
      *    up for our newsletter!" to the console.
      */
     
+
+export default function App() {
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        newsletter: false
+    })
+    
+    function handleChange(event) {
+        const { name, value, type, checked } = event.target
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [name]: type === "checkbox" ? checked : value
+            }
+        })
+    }
+    console.log(formData)
+
     function handleSubmit(event) {
         event.preventDefault()
     }
@@ -29,22 +47,34 @@ export default function App() {
                     type="email" 
                     placeholder="Email address"
                     className="form--input"
+                    onChange={handleChange}
+                    name="email"
+                    value={formData.email}
                 />
                 <input 
                     type="password" 
                     placeholder="Password"
                     className="form--input"
+                    onChange={handleChange}
+                    name="password"
+                    value={formData.password}
                 />
                 <input 
                     type="password" 
                     placeholder="Confirm password"
                     className="form--input"
+                    onChange={handleChange}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
                 />
                 
                 <div className="form--marketing">
                     <input
                         id="okayToEmail"
                         type="checkbox"
+                        onChange={handleChange}
+                        name="newsletter"
+                        checked={formData.newsletter}
                         
                     />
                     <label htmlFor="okayToEmail">I want to join the newsletter</label>
