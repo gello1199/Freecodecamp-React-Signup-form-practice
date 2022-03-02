@@ -1,13 +1,4 @@
-import React, { useState } from "react"
-
-  /**
-     * Challenge: Connect the form to local state
-    
-     * 4. Also when submitting the form, if the person checked
-     *    the "newsletter" checkbox, log "Thanks for signing
-     *    up for our newsletter!" to the console.
-     */
-    
+import React, { useState } from "react"   
 
 export default function App() {
     const [formData, setFormData] = useState({
@@ -30,15 +21,13 @@ export default function App() {
     function handleSubmit(event) {
         event.preventDefault()
         if(formData.password === formData.confirmPassword) {
-            alert("Successfully signed up")
             console.log("Successfully signed up")
         } else {
-            alert("passwords do not match")
             console.log("passwords do not match")
+            return
         }
 
         if(formData.newsletter) {
-            alert("Thanks for signing up for our newsletter")
             console.log("Thanks for signing up for our newsletter")
         } 
     }
